@@ -28,14 +28,37 @@
     </div>
     
     <!-- Actions -->
-    <div class="d-flex align-items-center gap-1 opacity-50 hovered-opacity-100">
+    <div class="d-flex align-items-center gap-1 opacity-50 hovered-opacity-100" data-controller="confirmation">
+      <!-- Edit Button (Standard) -->
       <%= link_to edit_todo_path(todo), class: "btn btn-icon text-muted btn-light rounded-circle shadow-none", title: "Edit" do %>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
       <% end %>
       
-      <%= button_to todo, method: :delete, class: "btn btn-icon text-danger btn-light rounded-circle shadow-none", form: { data: { turbo_confirm: "Are you sure?" } }, title: "Delete" do %>
+      <!-- Delete Trigger (Visible initially) -->
+      <button type="button" 
+              class="btn btn-icon text-danger btn-light rounded-circle shadow-none" 
+              data-confirmation-target="trigger" 
+              data-action="click->confirmation#confirm" 
+              title="Delete">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-      <% end %>
+      </button>
+
+      <!-- Delete Confirmation (Hidden initially) -->
+      <div data-confirmation-target="options" class="d-none align-items-center gap-1 bg-white shadow-sm rounded-pill p-1 border">
+        <!-- Confirm (Real Delete) -->
+        <%= button_to todo, method: :delete, class: "btn btn-icon text-white bg-danger rounded-circle shadow-none p-0 d-flex align-items-center justify-content-center", style: "width: 28px; height: 28px;", title: "Permenantly Delete" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <% end %>
+
+        <!-- Cancel -->
+        <button type="button" 
+                class="btn btn-icon text-muted bg-light rounded-circle shadow-none p-0 d-flex align-items-center justify-content-center" 
+                style: "width: 28px; height: 28px;"
+                data-action="click->confirmation#cancel" 
+                title="Cancel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
     </div>
 
   </div>
