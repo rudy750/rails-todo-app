@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-lg-6 mx-auto">
+    <h1>New Todo</h1>
+
+    <%= form_with(model: @todo, local: true, class: "needs-validation") do |form| %>
+      <% if @todo.errors.any? %>
+        <div class="alert alert-danger">
+          <h5><%= pluralize(@todo.errors.count, "error") %> prohibited this todo from being saved:</h5>
+          <ul class="mb-0">
+            <% @todo.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :title, class: "form-label" %>
+        <%= form.text_field :title, class: "form-control", placeholder: "What needs to be done?", required: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_area :description, class: "form-control", rows: 3, placeholder: "Additional details (optional)" %>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= form.submit "Create Todo", class: "btn btn-success" %>
+        <%= link_to "Cancel", root_path, class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
