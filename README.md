@@ -1,53 +1,76 @@
 # 📝 Ruby on Rails Todo App
 
-A simple, elegant todo list application built with Ruby on Rails 7.1 to demonstrate the framework's best features and conventions.
+A simple, elegant todo list application built with Ruby on Rails 6.1.7 and Ruby 3.2.9. This project demonstrates a **Modern Minimalist** design aesthetic and uses **Hotwire (Turbo Streams)** for a dynamic, single-page-application feel without the complexity of front-end frameworks.
 
 ## 🎯 Features
 
-- ✅ Create, read, update, and delete todos (CRUD operations)
-- ✅ Mark todos as complete/incomplete
-- ✅ Beautiful Bootstrap 5 UI
-- ✅ Responsive design for all devices
-- ✅ Form validations
-- ✅ Flash messages for user feedback
-- ✅ Turbo/Hotwire integration for fast, SPA-like experience
-- ✅ RESTful routing
-- ✅ ActiveRecord ORM with SQLite database
+- ✅ **Smart Task Management**: Create, edit, toggle, and delete tasks instantly.
+- ✅ **Dynamic Updates**: Uses Turbo Streams for real-time UI updates without page reloads (Toggle status, delete items).
+- ✅ **Modern Minimalist UI**: Custom "Slate & Emerald" theme built on top of Bootstrap 5.
+  - Glass-morphism navigation.
+  - Clean typography and increased whitespace.
+  - SVG icons for a clutter-free interface.
+- ✅ **Responsive**: Fully optimized for mobile and desktop.
+- ✅ **Data Validation**: Model-level validations with inline error reporting.
 
 ## 🚀 Tech Stack
 
-- **Ruby**: 3.2.2
-- **Rails**: 7.1.0
+- **Ruby**: 3.2.9
+- **Rails**: 6.1.7
 - **Database**: SQLite3
-- **Frontend**: Bootstrap 5.3, Hotwire (Turbo & Stimulus)
-- **Server**: Puma
+- **Frontend**: 
+  - Bootstrap 5.3 (SCSS)
+  - Hotwire (Turbo & Stimulus)
+  - Importmaps (No Webpack/Node.js required for assets)
+- **Asset Pipeline**: Sprockets
 
 ## 📋 Prerequisites
 
 Before running this application, make sure you have the following installed:
 
-- Ruby 3.2.2 or higher
-- Bundler gem
+- Ruby 3.2.9 (Recommended via Homebrew on macOS: `brew install ruby@3.2`)
 - SQLite3
 
-### Installing Ruby
+### Environment Setup (macOS/Homebrew)
 
-**On macOS** (using Homebrew):
+If you are using Homebrew's Ruby, ensure it is in your path:
+
 ```bash
-brew install ruby@3.2
+export PATH="/opt/homebrew/opt/ruby@3.2/bin:$PATH"
 ```
 
-**On macOS** (using rbenv - recommended):
-```bash
-brew install rbenv
-rbenv install 3.2.2
-rbenv global 3.2.2
-```
+## 🛠️ Installation & Setup
 
-**On Linux**:
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/rudy750/rails-todo-app.git
+    cd rails-todo-app
+    ```
+
+2.  **Install Gems**
+    ```bash
+    bundle install
+    ```
+    *(Note: If you encounter bundler version issues, you may need to use `gem install bundler:2.5.21` and run `bundle _2.5.21_ install`)*
+
+3.  **Setup Database**
+    ```bash
+    rails db:setup
+    ```
+
+4.  **Run the Server**
+    ```bash
+    rails server
+    ```
+    Access the app at `http://localhost:3000`.
+
+## 🎨 Asset Pipeline Notes
+
+This project uses `importmap-rails` and `sprockets`. If you make changes to the CSS or JS manifest, you may need to clear the cache:
+
 ```bash
-# Using rbenv
-curl -fsSL https://github.com/rbenv/rbenv-installer/raw/main/bin/rbenv-installer | bash
+rails assets:clobber
+```
 rbenv install 3.2.2
 rbenv global 3.2.2
 ```
