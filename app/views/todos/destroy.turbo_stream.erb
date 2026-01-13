@@ -1,0 +1,4 @@
+<%= turbo_stream.remove @todo %>
+<%= turbo_stream.update "todo_stats" do %>
+  <%= Todo.completed.count %> / <%= Todo.count %> Completed
+<% end %>
