@@ -15,38 +15,25 @@
     <!-- New Todo Form -->
     <div class="card border-0 shadow-sm rounded-4 mb-5 p-2 bg-white">
       <div class="card-body p-2">
-        <%= form_with(model: @todo, local: true, class: "needs-validation") do |form| %>
-          <div class="d-flex gap-2">
-            <div class="flex-grow-1">
-              <%= form.text_field :title, class: "form-control form-control-minimal border-0 shadow-none ps-3", placeholder: "What needs to be done?", required: true, style: "font-size: 1.2rem;" %>
-            </div>
-            <%= form.button class: "btn btn-primary rounded-3 px-4 fw-bold d-flex align-items-center gap-2" do %>
-              <span>Add</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <% end %>
-          </div>
-          <div class="mt-2 border-top pt-2 px-3">
-             <%= form.text_area :description, class: "form-control border-0 shadow-none p-0 text-muted", rows: 1, placeholder: "Add details (optional)", style: "resize: none; font-size: 0.95rem;" %>
-          </div>
-        <% end %>
+        <%= render "form", todo: @todo %>
       </div>
     </div>
 
     <!-- Todos List -->
     <div class="mb-5">
-      <% if @todos.empty? %>
-        <div class="text-center py-5">
-          <div class="mb-3 text-muted" style="opacity: 0.3;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      <div id="todos" class="d-flex flex-column gap-3">
+        <% if @todos.empty? %>
+          <div id="empty_state" class="text-center py-5">
+            <div class="mb-3 text-muted" style="opacity: 0.3;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <h5 class="text-muted fw-normal">All caught up!</h5>
+            <p class="text-muted small">Add a new task above to get started.</p>
           </div>
-          <h5 class="text-muted fw-normal">All caught up!</h5>
-          <p class="text-muted small">Add a new task above to get started.</p>
-        </div>
-      <% else %>
-        <div id="todos" class="d-flex flex-column gap-3">
+        <% else %>
           <%= render @todos %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

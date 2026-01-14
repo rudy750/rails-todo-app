@@ -30,7 +30,7 @@ class TodosController < ApplicationController
         format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.turbo_stream
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("new_todo_form", partial: "todos/form", locals: { todo: @todo }) }
       end
     end
   end

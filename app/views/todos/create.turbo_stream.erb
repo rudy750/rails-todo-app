@@ -1,0 +1,6 @@
+<%= turbo_stream.prepend "todos", @todo %>
+<%= turbo_stream.replace "new_todo_form", partial: "todos/form", locals: { todo: Todo.new } %>
+<%= turbo_stream.update "todo_stats" do %>
+  <%= Todo.completed.count %> / <%= Todo.count %> Completed
+<% end %>
+<%= turbo_stream.remove "empty_state" %>
