@@ -254,10 +254,47 @@ todo.toggle_completion!  # Modifies and saves
 
 ## 🧪 Testing
 
-Run tests with:
+This project includes comprehensive unit tests using Minitest (Rails default testing framework).
+
+### Test Coverage
+- **47 tests** covering all models and controllers
+- **104 assertions** ensuring code quality
+- Model validations, scopes, and custom methods
+- Controller actions (CRUD operations and toggle)
+- Error handling and edge cases
+
+### Running Tests
+
+Run all tests:
 ```bash
 rails test
 ```
+
+Run tests verbosely:
+```bash
+rails test --verbose
+```
+
+Run specific test files:
+```bash
+rails test test/models/todo_test.rb
+rails test test/controllers/todos_controller_test.rb
+```
+
+### Continuous Integration
+
+This project uses GitHub Actions for CI. Tests run automatically on:
+- Push to main branch
+- Pull requests to main branch
+
+The CI workflow:
+1. Sets up Ruby 3.2.3 environment
+2. Installs dependencies
+3. Creates and migrates test database
+4. Runs all tests
+5. Reports results
+
+See `.github/workflows/ci.yml` for configuration details.
 
 ## 🔧 Common Rails Commands
 
