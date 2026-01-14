@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    env:
+      RAILS_ENV: test
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.3
+        bundler-cache: true
+        
+    - name: Install dependencies
+      run: |
+        gem install bundler -v 2.5.21
+        bundle _2.5.21_ install --jobs 4 --retry 3
+        
+    - name: Set up database
+      run: |
+        bundle _2.5.21_ exec rails db:create
+        bundle _2.5.21_ exec rails db:migrate
+        
+    - name: Run tests
+      run: bundle _2.5.21_ exec rails test
+      
+    - name: Report test coverage
+      if: always()
+      run: |
+        echo "Test suite completed"

@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.9"
+ruby "3.2.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 6.1.0"
@@ -72,6 +72,12 @@ group :development do
 end
 
 group :test do
+  # Pin to Minitest 5.x for Rails 6.1 compatibility
+  gem "minitest", "~> 5.20"
+  
+  # For controller testing helpers like assigns
+  gem "rails-controller-testing"
+  
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"

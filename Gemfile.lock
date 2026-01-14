@@ -127,8 +127,7 @@ GEM
     matrix (0.4.3)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (6.0.1)
-      prism (~> 1.5)
+    minitest (5.27.0)
     msgpack (1.8.0)
     net-imap (0.6.2)
       date
@@ -160,7 +159,6 @@ GEM
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.8.0)
     psych (5.3.1)
       date
       stringio
@@ -186,6 +184,10 @@ GEM
       bundler (>= 1.15.0)
       railties (= 6.1.7.10)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
@@ -286,8 +288,10 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   listen (~> 3.8)
+  minitest (~> 5.20)
   puma (~> 6.0)
   rails (~> 6.1.0)
+  rails-controller-testing
   sassc-rails
   selenium-webdriver
   sprockets-rails
@@ -298,7 +302,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.2.9p265
+   ruby 3.2.3p157
 
 BUNDLED WITH
    2.5.21
