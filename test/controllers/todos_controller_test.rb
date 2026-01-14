@@ -208,33 +208,28 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
   end
 
   # Error handling tests
-  test "should return 404 for non-existent todo on show" do
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get todo_url(id: 999999)
-    end
+  test "should handle non-existent todo on show" do
+    get todo_url(id: 999999)
+    assert_response :not_found
   end
 
-  test "should return 404 for non-existent todo on edit" do
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get edit_todo_url(id: 999999)
-    end
+  test "should handle non-existent todo on edit" do
+    get edit_todo_url(id: 999999)
+    assert_response :not_found
   end
 
-  test "should return 404 for non-existent todo on update" do
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch todo_url(id: 999999), params: { todo: { title: "Updated" } }
-    end
+  test "should handle non-existent todo on update" do
+    patch todo_url(id: 999999), params: { todo: { title: "Updated" } }
+    assert_response :not_found
   end
 
-  test "should return 404 for non-existent todo on destroy" do
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete todo_url(id: 999999)
-    end
+  test "should handle non-existent todo on destroy" do
+    delete todo_url(id: 999999)
+    assert_response :not_found
   end
 
-  test "should return 404 for non-existent todo on toggle" do
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch toggle_todo_url(id: 999999)
-    end
+  test "should handle non-existent todo on toggle" do
+    patch toggle_todo_url(id: 999999)
+    assert_response :not_found
   end
 end
