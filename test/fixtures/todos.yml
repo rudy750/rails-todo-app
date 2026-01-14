@@ -1,0 +1,26 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: "Buy groceries"
+  description: "Milk, eggs, bread, and butter"
+  completed: false
+
+two:
+  title: "Finish project report"
+  description: "Complete the quarterly report for the team"
+  completed: true
+
+three:
+  title: "Call dentist"
+  description: "Schedule annual checkup appointment"
+  completed: false
+
+completed_todo:
+  title: "Completed task"
+  description: "This task is already done"
+  completed: true
+
+pending_todo:
+  title: "Pending task"
+  description: "This task is not yet done"
+  completed: false
