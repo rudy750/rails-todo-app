@@ -18,6 +18,29 @@
           <% end %>
         </p>
 
+        <% if @todo.due_date.present? %>
+          <p class="card-text">
+            <strong>Due Date:</strong>
+            <% 
+              days = @todo.days_until_due
+              if @todo.overdue?
+                badge_class = "badge bg-danger text-white"
+                date_text = "Overdue by #{days.abs} #{'day'.pluralize(days.abs)} - #{@todo.due_date.strftime('%B %d, %Y')}"
+              elsif @todo.due_today?
+                badge_class = "badge bg-warning text-dark"
+                date_text = "Due today - #{@todo.due_date.strftime('%B %d, %Y')}"
+              elsif @todo.due_soon?
+                badge_class = "badge bg-info text-white"
+                date_text = days == 1 ? "Due tomorrow - #{@todo.due_date.strftime('%B %d, %Y')}" : "Due in #{days} days - #{@todo.due_date.strftime('%B %d, %Y')}"
+              else
+                badge_class = "badge bg-secondary text-white"
+                date_text = @todo.due_date.strftime('%B %d, %Y')
+              end
+            %>
+            <span class="<%= badge_class %>"><%= date_text %></span>
+          </p>
+        <% end %>
+
         <p class="card-text">
           <small class="text-muted">
             Created <%= time_ago_in_words(@todo.created_at) %> ago

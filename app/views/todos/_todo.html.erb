@@ -25,6 +25,35 @@
           <%= todo.description %>
         </p>
       <% end %>
+      <% if todo.due_date.present? && !todo.completed? %>
+        <% 
+          days = todo.days_until_due
+          if todo.overdue?
+            badge_class = "badge bg-danger text-white"
+            date_text = "Overdue by #{days.abs} #{'day'.pluralize(days.abs)}"
+          elsif todo.due_today?
+            badge_class = "badge bg-warning text-dark"
+            date_text = "Due today"
+          elsif todo.due_soon?
+            badge_class = "badge bg-info text-white"
+            date_text = days == 1 ? "Due tomorrow" : "Due in #{days} days"
+          else
+            badge_class = "badge bg-secondary text-white"
+            date_text = "Due #{todo.due_date.strftime('%b %d, %Y')}"
+          end
+        %>
+        <div class="mt-1">
+          <span class="<%= badge_class %> rounded-pill px-2 py-1" style="font-size: 0.75rem; font-weight: 500;">
+            <%= date_text %>
+          </span>
+        </div>
+      <% elsif todo.due_date.present? && todo.completed? %>
+        <div class="mt-1">
+          <span class="badge bg-secondary text-white rounded-pill px-2 py-1" style="font-size: 0.75rem; font-weight: 500;">
+            Due <%= todo.due_date.strftime('%b %d, %Y') %>
+          </span>
+        </div>
+      <% end %>
     </div>
     
     <!-- Actions -->

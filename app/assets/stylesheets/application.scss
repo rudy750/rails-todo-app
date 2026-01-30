@@ -80,3 +80,23 @@ body {
 .text-muted-light {
   color: #94a3b8 !important;
 }
+
+// Due date badge styling
+.badge {
+  &.bg-danger {
+    background-color: #dc2626 !important;
+  }
+  
+  &.bg-warning {
+    background-color: #f59e0b !important;
+    color: #ffffff !important;
+  }
+  
+  &.bg-info {
+    background-color: #3b82f6 !important;
+  }
+  
+  &.bg-secondary {
+    background-color: #64748b !important;
+  }
+}
