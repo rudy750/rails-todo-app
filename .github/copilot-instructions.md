@@ -11,6 +11,10 @@
 ## ⚡️ Critical Workflows & Commands
 **Note**: This project requires strict versioning for Bundler and Ruby.
 
+
+ALWAYS USE Background @cli 
+as the Copilot chat experience
+
 - **Start Server**: 
   ```bash
   bundle _2.5.21_ exec rails server

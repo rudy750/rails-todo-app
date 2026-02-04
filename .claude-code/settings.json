@@ -1,0 +1,5 @@
+{
+  "hooks": {
+    "path": ".github/hooks/rails-hooks.json"
+  }
+}
