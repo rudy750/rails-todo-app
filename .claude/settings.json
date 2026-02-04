@@ -1,0 +1,37 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/rudy750/dev/learn/ruby-to-do/scripts/log-prompt.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/rudy750/dev/learn/ruby-to-do/scripts/pre-tool-check.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "mkdir -p /Users/rudy750/dev/learn/ruby-to-do/logs && echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Session ended\" >> /Users/rudy750/dev/learn/ruby-to-do/logs/copilot-activity.log"
+          }
+        ]
+      }
+    ]
+  }
+}

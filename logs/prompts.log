@@ -1,0 +1,59 @@
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:05:51]
+test prompt from manual run
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:07:01]
+<system-reminder>\nThe user provided the following references:\n- /Users/rudy750/dev/learn/ruby-to-do/.github/copilot-instructions.md\n\nIMPORTANT: this context may or may not be relevant to your tasks. You should not respond to this context unless it is highly relevant to your task.\n</system-reminder>\n\nkeep the prompts log in the original copilot-activity log as well
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:07:31]
+<system-reminder>\nThe user provided the following references:\n- /Users/rudy750/dev/learn/ruby-to-do/.github/copilot-instructions.md\n\nIMPORTANT: this context may or may not be relevant to your tasks. You should not respond to this context unless it is highly relevant to your task.\n</system-reminder>\n\nwhat is this project
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:08:22]
+<system-reminder>\nThe user provided the following references:\n- /Users/rudy750/dev/learn/ruby-to-do/logs/copilot-activity.log:10\n- /Users/rudy750/dev/learn/ruby-to-do/.github/copilot-instructions.md\n\nIMPORTANT: this context may or may not be relevant to your tasks. You should not respond to this context unless it is highly relevant to your task.\n</system-reminder>\n\nthis is what is being added to the logs\n[2026-02-04 15:07:31] USER PROMPT:\n<system-reminder>\\nThe user provided the following references:\\n- /Users/rudy750/dev/learn/ruby-to-do/.github/copilot-instructions.md\\n\\nIMPORTANT: this context may or may not be relevant to your tasks. You should not respond to this context unless it is highly relevant to your task.\\n</system-reminder>\\n\\nwhat is this project\n\n\nwhich does not include the text of the actual prompt, please fix
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:08:54]
+<system-reminder>
+The user provided the following references:
+- /path/to/file.md
+</system-reminder>
+
+what is this project
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:09:28]
+
+
+what is this project
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:10:01]
+what is this project
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:10:32]
+keep the system-reminder data in the hook-debug.log
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:13:46]
+what does this project do
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:14:13]
+the pre-tool hook entry is empty can you fix it?
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:15:04]
+there is no entry in the log. not sure if the script is not working or what is suppoed to be in there
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:15:43]
+what is this project
+
+═══════════════════════════════════════════════════════════════
+[2026-02-04 15:16:40]
+what does this project do
+

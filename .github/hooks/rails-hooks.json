@@ -4,40 +4,40 @@
     "sessionStart": [
       {
         "type": "command",
-        "bash": "./scripts/validate-environment.sh",
-        "cwd": ".",
+        "bash": "/Users/rudy750/dev/learn/ruby-to-do/scripts/validate-environment.sh",
+        "cwd": "/Users/rudy750/dev/learn/ruby-to-do",
         "timeoutSec": 10
       }
     ],
     "userPromptSubmitted": [
       {
         "type": "command",
-        "bash": "echo \"[$(date '+%Y-%m-%d %H:%M:%S')] User prompt received\" >> logs/copilot-activity.log",
-        "cwd": ".",
+        "bash": "mkdir -p /Users/rudy750/dev/learn/ruby-to-do/logs && echo \"[$(date '+%Y-%m-%d %H:%M:%S')] User prompt received (pwd: $(pwd))\" >> /Users/rudy750/dev/learn/ruby-to-do/logs/copilot-activity.log && echo 'Callback hook success: Success'",
+        "cwd": "/Users/rudy750/dev/learn/ruby-to-do",
         "timeoutSec": 5
       }
     ],
     "preToolUse": [
       {
         "type": "command",
-        "bash": "./scripts/pre-tool-check.sh",
-        "cwd": ".",
+        "bash": "/Users/rudy750/dev/learn/ruby-to-do/scripts/pre-tool-check.sh",
+        "cwd": "/Users/rudy750/dev/learn/ruby-to-do",
         "timeoutSec": 5
       }
     ],
     "postToolUse": [
       {
         "type": "command",
-        "bash": "cat >> logs/tool-usage.jsonl",
-        "cwd": ".",
+        "bash": "mkdir -p /Users/rudy750/dev/learn/ruby-to-do/logs && cat >> /Users/rudy750/dev/learn/ruby-to-do/logs/tool-usage.jsonl && echo '✓ Tool execution logged'",
+        "cwd": "/Users/rudy750/dev/learn/ruby-to-do",
         "timeoutSec": 5
       }
     ],
     "sessionEnd": [
       {
         "type": "command",
-        "bash": "echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Copilot session ended\" >> logs/copilot-activity.log",
-        "cwd": ".",
+        "bash": "mkdir -p /Users/rudy750/dev/learn/ruby-to-do/logs && echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Copilot session ended\" >> /Users/rudy750/dev/learn/ruby-to-do/logs/copilot-activity.log && echo '✅ Session logged successfully'",
+        "cwd": "/Users/rudy750/dev/learn/ruby-to-do",
         "timeoutSec": 5
       }
     ]
