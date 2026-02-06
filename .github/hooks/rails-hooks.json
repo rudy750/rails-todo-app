@@ -12,7 +12,7 @@
     "userPromptSubmitted": [
       {
         "type": "command",
-        "bash": "mkdir -p /Users/rudy750/dev/learn/ruby-to-do/logs && echo \"[$(date '+%Y-%m-%d %H:%M:%S')] User prompt received (pwd: $(pwd))\" >> /Users/rudy750/dev/learn/ruby-to-do/logs/copilot-activity.log && echo 'Callback hook success: Success'",
+        "bash": "/Users/rudy750/dev/learn/ruby-to-do/scripts/log-prompt.sh",
         "cwd": "/Users/rudy750/dev/learn/ruby-to-do",
         "timeoutSec": 5
       }

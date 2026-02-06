@@ -1,10 +1,21 @@
 # GitHub Copilot Hooks for Rails Todo App
 
-This directory contains hook configurations for GitHub Copilot's coding agent.
+This directory contains hook configurations for GitHub Copilot's coding agent in VS Code Insiders.
 
 ## What are hooks?
 
 Hooks allow you to execute custom shell commands at strategic points in Copilot's workflow, such as when a session starts, before tools are used, or when a session ends.
+
+## Hook System Status
+
+⚠️ **Note**: If you're seeing `{}` in your logs instead of actual prompts, this is a known issue with VS Code Insiders and the newer GitHub Copilot hooks API. The `userPromptSubmitted` hook may not receive the full prompt data via stdin in the current version.
+
+**Workaround**: The hooks are configured to check multiple sources:
+- Environment variables (`$COPILOT_PROMPT`)
+- JSON stdin (for backwards compatibility)  
+- Command line arguments
+
+Check [logs/hook-debug.log](../../logs/hook-debug.log) to see what data is being received.
 
 ## Installed Hooks
 
@@ -19,8 +30,11 @@ This configuration includes the following hooks:
    - Creates logs directory
    - Logs session start
 
-2. **userPromptSubmitted** - Logs when you submit prompts to Copilot
+2. **userPromptSubmitted** - Logs your prompts to Copilot
+   - Strips system reminders for cleaner logs
    - Timestamps each interaction
+   - Saved to `logs/prompts.log` and `logs/copilot-activity.log`
+   - **Debug**: Check `logs/hook-debug.log` if prompts aren't being captured
 
 3. **preToolUse** - Runs before Copilot executes any tool
    - Warns about potentially destructive operations
