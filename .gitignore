@@ -66,3 +66,5 @@ logs/copilot-activity.log
 logs/hook-debug.log
 logs/prompts.log
 logs/tool-usage.jsonl
+logs/copilot-activity.log
+logs/hook-debug.log
