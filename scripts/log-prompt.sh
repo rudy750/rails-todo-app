@@ -17,10 +17,12 @@ echo "[$(date '+%Y-%m-%d %H:%M:%S')] ═══ RAW PROMPT INPUT ═══" >> "$
 echo "$INPUT" >> "$DEBUG_LOG"
 echo "" >> "$DEBUG_LOG"
 
-# Extract the prompt text using a robust JSON-aware parser (fallbacks included)
-PROMPT=$(python3 - <<'PY' <<< "$INPUT" 2>/dev/null
+# Create a temporary Python script to extract and clean the prompt
+PYTHON_SCRIPT=$(mktemp)
+cat > "$PYTHON_SCRIPT" << 'PYEND'
 import json
 import os
+import re
 import sys
 
 raw = sys.stdin.read()
@@ -53,6 +55,16 @@ def from_messages(messages):
             if val:
                 return val
     return ""
+
+def strip_system_reminders(text):
+    """Remove <system-reminder>...</system-reminder> blocks from text"""
+    if not isinstance(text, str):
+        return text
+    # Remove system-reminder blocks (handles escaped newlines in JSON)
+    text = re.sub(r'<system-reminder>[\s\S]*?</system-reminder>', '', text)
+    # Remove extra newlines and leading/trailing whitespace
+    text = re.sub(r'\n\s*\n+', '\n', text)
+    return text.strip()
 
 prompt = ""
 data = {}
@@ -114,15 +126,18 @@ if prompt:
     except Exception:
         pass
 
-print(prompt.strip())
-PY
-)
+# Strip system-reminder blocks from the prompt before returning
+prompt = strip_system_reminders(prompt)
 
-# Strip out <system-reminder>...</system-reminder> blocks using perl (works on macOS)
-PROMPT=$(echo "$PROMPT" | perl -0777 -pe 's/<system-reminder>.*?<\/system-reminder>//gs')
+print(prompt)
+PYEND
 
-# Trim leading/trailing whitespace and blank lines
-PROMPT=$(echo "$PROMPT" | sed '/^[[:space:]]*$/d' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+# Extract the prompt using the Python script
+PROMPT=$(echo "$INPUT" | python3 "$PYTHON_SCRIPT" 2>/dev/null)
+rm "$PYTHON_SCRIPT"
+
+# Trim leading/trailing whitespace
+PROMPT=$(echo "$PROMPT" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
 # Skip logging if prompt is empty after stripping
 if [[ -z "$PROMPT" ]]; then
@@ -149,3 +164,4 @@ echo "" >> "$PROJECT_ROOT/logs/copilot-activity.log"
 echo "Prompt logged successfully"
 
 exit 0
+
