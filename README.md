@@ -71,42 +71,50 @@ This project uses `importmap-rails` and `sprockets`. If you make changes to the 
 ```bash
 rails assets:clobber
 ```
-rbenv install 3.2.2
-rbenv global 3.2.2
+## 🪝 GitHub Copilot Hooks
+
+This project includes a **GitHub Copilot hooks** system that integrates with the coding agent in VS Code. Hooks execute custom shell scripts at key points in Copilot's workflow, providing environment validation, prompt logging, and tool-use guardrails.
+
+### Configuration
+
+Hooks are defined in [.github/hooks/rails-hooks.json](.github/hooks/rails-hooks.json) and backed by scripts in [scripts/](scripts/).
+
+### Hook Lifecycle
+
+| Hook | Script | Purpose |
+|------|--------|---------|
+| `sessionStart` | [scripts/validate-environment.sh](scripts/validate-environment.sh) | Validates Ruby 3.2.9, Bundler 2.5.21, and database existence on session open |
+| `userPromptSubmitted` | [scripts/log-prompt.sh](scripts/log-prompt.sh) | Logs each user prompt (with system-reminder stripping) to `logs/prompts.log` |
+| `preToolUse` | [scripts/pre-tool-check.sh](scripts/pre-tool-check.sh) | Warns on destructive operations; reminds to use `bundle _2.5.21_ exec` |
+| `postToolUse` | *(inline command)* | Appends tool execution JSON to `logs/tool-usage.jsonl` |
+| `sessionEnd` | *(inline command)* | Logs a timestamped session-end entry to `logs/copilot-activity.log` |
+
+### Log Files
+
+All hook output is written to the `logs/` directory (git-ignored):
+
+| File | Format | Contents |
+|------|--------|----------|
+| `logs/prompts.log` | Plain text | Timestamped user prompts |
+| `logs/copilot-activity.log` | Plain text | Session start/end events and tool-use summaries |
+| `logs/tool-usage.jsonl` | JSON Lines | Raw tool execution data from `postToolUse` |
+| `logs/hook-debug.log` | Plain text | Raw stdin payloads for debugging hook inputs |
+
+### Diagnostic Script
+
+Run the status checker to verify hooks are installed and working:
+
+```bash
+bash scripts/check-hooks.sh
 ```
 
-## 🛠️ Installation & Setup
+This reports whether the hooks config is detected, shows recent hook activity, and flags any empty-input issues.
 
-1. **Clone or navigate to the repository**:
-   ```bash
-   cd ruby-to-do
-   ```
+### Customization
 
-2. **Install dependencies**:
-   ```bash
-   bundle install
-   ```
-
-3. **Setup the database**:
-   ```bash
-   rails db:create
-   rails db:migrate
-   rails db:seed
-   ```
-
-4. **Start the Rails server**:
-   ```bash
-   rails server
-   ```
-   Or simply:
-   ```bash
-   rails s
-   ```
-
-5. **Open your browser** and visit:
-   ```
-   http://localhost:3000
-   ```
+- Edit [.github/hooks/rails-hooks.json](.github/hooks/rails-hooks.json) to add or remove hooks.
+- Modify scripts in [scripts/](scripts/) to change validation or logging behavior.
+- See the [hooks README](.github/hooks/README.md) for more details.
 
 ## 🎓 Rails Features Demonstrated
 
