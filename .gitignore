@@ -60,6 +60,4 @@ yarn-debug.log*
 /.idea
 /.vscode
 *.iml
-logs/copilot-activity.log
-logs/hook-debug.log
-logs/prompts.log
+logs/*
