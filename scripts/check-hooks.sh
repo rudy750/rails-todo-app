@@ -1,7 +1,9 @@
 #!/bin/bash
 # Check if hooks are working and what data they're receiving
 
-PROJECT_ROOT="/Users/rudy750/dev/learn/ruby-to-do"
+# Dynamically determine PROJECT_ROOT (supports worktrees)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 DEBUG_LOG="$PROJECT_ROOT/logs/hook-debug.log"
 ACTIVITY_LOG="$PROJECT_ROOT/logs/copilot-activity.log"
 

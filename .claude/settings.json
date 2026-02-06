@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/rudy750/dev/learn/ruby-to-do/scripts/log-prompt.sh"
+            "command": "./scripts/log-prompt.sh"
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/rudy750/dev/learn/ruby-to-do/scripts/pre-tool-check.sh"
+            "command": "./scripts/pre-tool-check.sh"
           }
         ]
       }
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "mkdir -p /Users/rudy750/dev/learn/ruby-to-do/logs && echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Session ended\" >> /Users/rudy750/dev/learn/ruby-to-do/logs/copilot-activity.log"
+            "command": "mkdir -p ./logs && echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Session ended\" >> ./logs/copilot-activity.log"
           }
         ]
       }

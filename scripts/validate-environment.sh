@@ -1,8 +1,9 @@
 #!/bin/bash
 # Validate Rails environment on Copilot session start
 
-# Absolute paths
-PROJECT_ROOT="/Users/rudy750/dev/learn/ruby-to-do"
+# Dynamically determine PROJECT_ROOT (supports worktrees)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 ACTIVITY_LOG="$PROJECT_ROOT/logs/copilot-activity.log"
 DEBUG_LOG="$PROJECT_ROOT/logs/hook-debug.log"
 

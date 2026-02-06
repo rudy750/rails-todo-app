@@ -2,7 +2,9 @@
 # Log user prompts from Claude Code userPromptSubmit hook
 # This script reads JSON from stdin and extracts the prompt
 
-PROJECT_ROOT="/Users/rudy750/dev/learn/ruby-to-do"
+# Dynamically determine PROJECT_ROOT (supports worktrees)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 PROMPT_LOG="$PROJECT_ROOT/logs/prompts.log"
 DEBUG_LOG="$PROJECT_ROOT/logs/hook-debug.log"
 

@@ -1,9 +1,13 @@
 #!/bin/bash
 # Pre-tool use hook - validates and logs tool usage
 
+# Dynamically determine PROJECT_ROOT (supports worktrees)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
 # Debug: Write to debug log immediately
-DEBUG_LOG="/Users/rudy750/dev/learn/ruby-to-do/logs/hook-debug.log"
-mkdir -p /Users/rudy750/dev/learn/ruby-to-do/logs
+DEBUG_LOG="$PROJECT_ROOT/logs/hook-debug.log"
+mkdir -p "$PROJECT_ROOT/logs"
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] PRE-TOOL HOOK EXECUTED - PWD: $(pwd)" >> "$DEBUG_LOG"
 
 # Read stdin (JSON input from Copilot)
@@ -16,7 +20,7 @@ echo "[$(date '+%Y-%m-%d %H:%M:%S')] INPUT received: ${INPUT:0:200}..." >> "$DEB
 TOOL=$(echo "$INPUT" | grep -oE '"tool_name":"[^"]*"' | cut -d'"' -f4)
 
 # Log the tool usage
-ACTIVITY_LOG="/Users/rudy750/dev/learn/ruby-to-do/logs/copilot-activity.log"
+ACTIVITY_LOG="$PROJECT_ROOT/logs/copilot-activity.log"
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Pre-tool: $TOOL" >> "$ACTIVITY_LOG"
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Logged to activity log: $TOOL" >> "$DEBUG_LOG"
 
